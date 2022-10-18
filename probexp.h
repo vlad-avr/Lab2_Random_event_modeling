@@ -15,7 +15,7 @@ public:
     int size();
     void set(unsigned int id, REvent event);
     void set(unsigned int id, int val = 0, double possib = 0);
-
+    void print();
     explicit ProbExp(QObject *parent = nullptr);
 private:
     std::vector<REvent> events;

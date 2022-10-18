@@ -1,6 +1,5 @@
 #ifndef RANDEVENT_H
 #define RANDEVENT_H
-
 struct REvent{
 public:
     int val;
