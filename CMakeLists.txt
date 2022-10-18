@@ -19,6 +19,9 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        RandEvent.h
+        probexp.cpp
+        probexp.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
