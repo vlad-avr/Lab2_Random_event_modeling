@@ -19,6 +19,9 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        dicesmanual.cpp
+        dicesmanual.h
+        dicesmanual.ui
         RandEvent.h
         probexp.cpp
         probexp.h

@@ -14,8 +14,11 @@ public:
 
     int size();
     void set(unsigned int id, REvent event);
-    void set(unsigned int id, int val = 0, double possib = 0);
-    void print();
+    void set(unsigned int id, std::string name, double val = 0, double possib = 0);
+    double get_M(int power = 1);
+    double get_D();
+    REvent get_rand_event();
+    //void print();
     explicit ProbExp(QObject *parent = nullptr);
 private:
     std::vector<REvent> events;

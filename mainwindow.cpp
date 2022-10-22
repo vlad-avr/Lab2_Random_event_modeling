@@ -18,13 +18,9 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_pushButton_clicked()
+
+void MainWindow::on_pushButton_Dice_manual_clicked()
 {
-    srand(time(0));
-    ProbExp* p_exp = new ProbExp();
-    for(int i = 0; i < 10; i++){
-        p_exp->set(i, REvent(rand()%10, (rand()%10)/10));
-    }
-    p_exp->print();
+
 }
 
