@@ -1,9 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "probexp.h"
 #include <iostream>
 #include <time.h>
-#include "RandEvent.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,8 +17,10 @@ MainWindow::~MainWindow()
 
 
 
-void MainWindow::on_pushButton_Dice_manual_clicked()
-{
 
+void MainWindow::on_action_Dice_like_scenario_triggered()
+{
+    dm_win = new DicesManual(this);
+    dm_win->show();
 }
 

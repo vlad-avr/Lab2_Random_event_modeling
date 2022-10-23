@@ -13,6 +13,8 @@ ProbExp::ProbExp(ProbExp *copy_exp)
     }
 }
 
+ProbExp::ProbExp(){}
+
 REvent ProbExp::get(unsigned int id)
 {
     assert(id < this->size());
@@ -24,18 +26,38 @@ int ProbExp::size()
     return events.size();
 }
 
-void ProbExp::set(unsigned int id, REvent event)
+void ProbExp::add(unsigned int id, REvent event)
 {
     assert(id <= this->size());
     std::vector<REvent>::iterator it = events.begin() + id;
     events.insert(it, event);
 }
 
-void ProbExp::set(unsigned int id, std::string name, double val, double possib)
+void ProbExp::add(unsigned int id, std::string name, double val, double possib)
 {
     assert(id <= this->size());
     std::vector<REvent>::iterator it = events.begin() + id;
     events.insert(it, REvent(name, val, possib));
+}
+
+void ProbExp::set(unsigned int id, REvent event)
+{
+    assert(id < this->size());
+    events[id] = event;
+}
+
+void ProbExp::set(unsigned int id, std::string name, double val, double possib)
+{
+    assert(id < this->size());
+    events[id] = REvent(name, val, possib);
+}
+
+
+void ProbExp::remove(unsigned int id)
+{
+    assert(id < this->size());
+    std::vector<REvent>::iterator it = this->events.begin() + id;
+    this->events.erase(it);
 }
 
 double ProbExp::get_M(int power)
@@ -67,17 +89,3 @@ REvent ProbExp::get_rand_event()
     return REvent("0", 0, 0);
 }
 
-//void ProbExp::print()
-//{
-//    QListWidget *qlist = new QListWidget();
-//    int size = this->size();
-//    for(int i = 0; i < size; i++){
-//        qlist->addItem(QString::number(this->get(i).val) + " : " + QString::number(this->get(i).possib));
-//    }
-//}
-
-ProbExp::ProbExp(QObject *parent)
-    : QObject{parent}
-{
-
-}

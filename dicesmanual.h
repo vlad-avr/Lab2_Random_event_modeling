@@ -2,7 +2,7 @@
 #define DICESMANUAL_H
 
 #include <QDialog>
-
+#include "probexp.h"
 namespace Ui {
 class DicesManual;
 }
@@ -15,7 +15,20 @@ public:
     explicit DicesManual(QWidget *parent = nullptr);
     ~DicesManual();
 
+private slots:
+    void on_AddEventButton_clicked();
+
+
+    void on_EditEventButton_clicked();
+
+    void on_RemoveEventButton_clicked();
+
+    void on_EditButton_clicked();
+
+    void on_ComputeButton_clicked();
+
 private:
+    ProbExp *exp;
     Ui::DicesManual *ui;
 };
 

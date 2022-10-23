@@ -13,41 +13,33 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>31</x>
-      <y>51</y>
-      <width>101</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Manual Input</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_Dice_manual">
-       <property name="toolTip">
-        <string>User defines values and probabilities for basic events (sum of probabilities must be equal to 1) and then the simulation runs N times, the results are then shown in a table</string>
-       </property>
-       <property name="toolTipDuration">
-        <number>10000</number>
-       </property>
-       <property name="text">
-        <string>&quot;Dice&quot;</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralwidget"/>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuManual_Input">
+    <property name="title">
+     <string>Manual Input</string>
+    </property>
+    <addaction name="action_Dice_like_scenario"/>
+   </widget>
+   <addaction name="menuManual_Input"/>
+  </widget>
+  <action name="action_Dice_like_scenario">
+   <property name="text">
+    <string>&quot;Dice-like&quot; scenario</string>
+   </property>
+   <property name="toolTip">
+    <string>Experiment similar to a 'dice' with N faces that have different probabilities (sum of probabilieties must be equal to 1)</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

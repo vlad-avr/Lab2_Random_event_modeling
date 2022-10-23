@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include "dicesmanual.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -18,9 +18,12 @@ public:
 private slots:
 
 
-    void on_pushButton_Dice_manual_clicked();
+
+
+    void on_action_Dice_like_scenario_triggered();
 
 private:
     Ui::MainWindow *ui;
+    DicesManual *dm_win;
 };
 #endif // MAINWINDOW_H
