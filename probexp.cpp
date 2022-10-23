@@ -89,3 +89,12 @@ REvent ProbExp::get_rand_event()
     return REvent("0", 0, 0);
 }
 
+std::vector<REvent> ProbExp::compute(unsigned int N)
+{
+    std::vector<REvent> res;
+    for(int i = 0; i < N; i++){
+       res.push_back(this->get_rand_event());
+    }
+    return res;
+}
+

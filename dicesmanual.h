@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "probexp.h"
+#include "dicesreswindow.h"
 namespace Ui {
 class DicesManual;
 }
@@ -30,6 +31,8 @@ private slots:
 private:
     ProbExp *exp;
     Ui::DicesManual *ui;
+    DicesResWindow * dr_wind;
+
 };
 
 #endif // DICESMANUAL_H

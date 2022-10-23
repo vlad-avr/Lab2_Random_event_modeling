@@ -21,6 +21,7 @@ public:
     double get_M(int power = 1);
     double get_D();
     REvent get_rand_event();
+    std::vector<REvent> compute(unsigned int N);
     //void print();
 
 private:

@@ -93,7 +93,7 @@ void DicesManual::on_ComputeButton_clicked()
         exp_prob += exp->get(i).possib;
     }
     if(exp_prob + eps > 1 && exp_prob - eps < 1){
-        QMessageBox::information(this, "Balls", "Gay website");
+
     }
     else{
         QMessageBox::warning(this, "Probability experiment", "ERROR: Overall sum of possibilities of all events is not equal to 1, consider changing possibilities in your events");
