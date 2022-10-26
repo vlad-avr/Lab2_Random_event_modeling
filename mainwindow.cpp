@@ -24,3 +24,5 @@ void MainWindow::on_action_Dice_like_scenario_triggered()
     dm_win->show();
 }
 
+
+

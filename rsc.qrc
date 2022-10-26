@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/WTimg"/>
+    <qresource prefix="/">
+        <file>../Resources/Lab2/wise_tree.png</file>
+    </qresource>
+</RCC>

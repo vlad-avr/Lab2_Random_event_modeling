@@ -16,6 +16,7 @@ public:
     explicit DicesManual(QWidget *parent = nullptr);
     ~DicesManual();
 
+
 private slots:
     void on_AddEventButton_clicked();
 
@@ -28,11 +29,26 @@ private slots:
 
     void on_ComputeButton_clicked();
 
+    void on_nameSortButton_clicked();
+
+    void on_valueSortButton_clicked();
+
+    void on_possibSortButton_clicked();
+
+    void on_saveSeedButton_clicked();
+
+    void on_loadSeedButton_clicked();
+
+    void on_loadButton_clicked();
+
+    void on_removeSeedButton_clicked();
+
 private:
+    int seed;
     ProbExp *exp;
     Ui::DicesManual *ui;
     DicesResWindow * dr_wind;
-
+    void sort(bool (*comp)(REvent* , REvent*));
 };
 
 #endif // DICESMANUAL_H

@@ -2,8 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
-#include <QListWidget>
-#include <QString>
+#include <cmath>
 
 ProbExp::ProbExp(ProbExp *copy_exp)
 {
@@ -72,22 +71,23 @@ double ProbExp::get_M(int power)
 
 double ProbExp::get_D()
 {
-    return (get_M() - get_M(2));
+    return (get_M(2) - pow(get_M(),2));
 }
 
 REvent ProbExp::get_rand_event()
 {
     int size = this->size();
     assert(size != 0);
-    double r_num = ((rand() % size) + 1) / size;
+    double r_num = ((rand() % size) + 1) / (double)size;
     double cur_diap = 0;
     for(int i = 0; i < size; i++){
         cur_diap += events[i].possib;
         if(r_num <= cur_diap){return events[i];}
     }
-    // should not return this;
-    return REvent("0", 0, 0);
+
+    return events[this->size() - 1];
 }
+
 
 std::vector<REvent> ProbExp::compute(unsigned int N)
 {
