@@ -21,7 +21,7 @@ void DicesResWindow::set_ui(ProbExp *exp, int N)
         ui->listWidget->addItem(QString::fromStdString(std::to_string(i+1) + "  " + vec[i].name + "  " + std::to_string(vec[i].val) + "  " + std::to_string(vec[i].possib)));
         average_val += vec[i].val;
     }
-    ui->M_lineE->insert(QString::fromStdString(std::to_string(exp->get_M())));
+    ui->M_lineE->insert(QString::fromStdString(std::to_string(exp->get_M(1))));
     ui->D_lineE->insert(QString::fromStdString(std::to_string(exp->get_D())));
 
     ui->prob_lineE->insert(QString::fromStdString(std::to_string(average_val / (double)vec.size())));

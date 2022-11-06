@@ -18,8 +18,6 @@ public:
 private slots:
 
 
-    void on_action_Cards_like_scenario_triggered();
-
     void on_action_Dice_like_scenario_triggered();
 
 private:

@@ -3,6 +3,7 @@
 #include <vector>
 #include <cassert>
 #include <cmath>
+#include <random>
 
 ProbExp::ProbExp(ProbExp *copy_exp)
 {
@@ -62,23 +63,35 @@ void ProbExp::remove(unsigned int id)
 double ProbExp::get_M(int power)
 {
     int size = this->size();
+    double omega = this->get_omega();
     double M = 0;
     for(int i = 0; i < size; i++){
-        M += pow((events[i].val), power) * (events[i].possib);
+        M += pow((events[i].val), power) * (events[i].possib/omega);
     }
     return M;
 }
 
 double ProbExp::get_D()
 {
-    return (get_M(2) - pow(get_M(),2));
+    return (get_M(2) - pow(get_M(1),2));
+}
+
+double ProbExp::get_omega()
+{
+    assert(this->size() > 0);
+    int size = this->size();
+    double res = 0;
+    for(int i = 0; i < size; i++){
+        res += events[i].possib;
+    }
+    return res;
 }
 
 REvent ProbExp::get_rand_event()
 {
     int size = this->size();
     assert(size != 0);
-    double r_num = ((rand() % size) + 1) / (double)size;
+    double r_num = ((double)rand()/RAND_MAX)*get_omega();
     double cur_diap = 0;
     for(int i = 0; i < size; i++){
         cur_diap += events[i].possib;

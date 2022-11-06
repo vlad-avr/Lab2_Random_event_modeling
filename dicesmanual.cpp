@@ -99,9 +99,17 @@ void DicesManual::sort(bool (*comp)(REvent *, REvent *))
 void DicesManual::on_EditEventButton_clicked()
 {
     if(ui->listWidget->count() == 0){
-        QMessageBox::warning(this, "Edit", "You have no items to edit, lol");
+        QMessageBox::warning(this, "Edit", "ERROR: You have no items to edit");
         return;
     }
+    ui->AddBox->setEnabled(false);
+    ui->ComputeButton->setEnabled(false);
+    ui->RemoveEventButton->setEnabled(false);
+    ui->EditEventButton->setEnabled(false);
+    ui->listWidget->setEnabled(false);
+    ui->nameSortButton->setEnabled(false);
+    ui->valueSortButton->setEnabled(false);
+    ui->possibSortButton->setEnabled(false);
     ui->EditBox->setEnabled(true);
     unsigned int i = ui->listWidget->currentRow();
     REvent event = exp->get(i);
@@ -114,7 +122,11 @@ void DicesManual::on_EditEventButton_clicked()
 void DicesManual::on_RemoveEventButton_clicked()
 {
     if(ui->listWidget->count() == 0){
-        QMessageBox::warning(this, "Edit", "You have no items to remove, lol");
+        QMessageBox::warning(this, "Edit", "ERROR: You have no items to remove");
+        return;
+    }
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "Remove Event", "Are you sure you want to delete this event?", QMessageBox::Yes | QMessageBox::No);
+    if(reply == QMessageBox::No){
         return;
     }
     exp->remove(ui->listWidget->currentRow());
@@ -129,7 +141,7 @@ void DicesManual::on_RemoveEventButton_clicked()
 void DicesManual::on_EditButton_clicked()
 {
     if(ui->listWidget->count() == 0){
-        QMessageBox::warning(this, "Edit", "You have no items to edit, lol");
+        QMessageBox::warning(this, "Edit", "ERROR: You have no items to edit");
         return;
     }
     unsigned int i = ui->listWidget->currentRow();
@@ -152,13 +164,21 @@ void DicesManual::on_EditButton_clicked()
     ui->edit_value_LineE->clear();
     ui->edit_prob_LineE->clear();
     ui->EditBox->setEnabled(false);
+    ui->AddBox->setEnabled(true);
+    ui->ComputeButton->setEnabled(true);
+    ui->RemoveEventButton->setEnabled(true);
+    ui->EditEventButton->setEnabled(true);
+    ui->listWidget->setEnabled(true);
+    ui->nameSortButton->setEnabled(true);
+    ui->valueSortButton->setEnabled(true);
+    ui->possibSortButton->setEnabled(true);
     ui->listWidget->setCurrentRow(0);
 }
 
 
 void DicesManual::on_ComputeButton_clicked()
 {
-    const double eps = 0.00001;
+   // const double eps = 0.00001;
     double exp_prob = 0;
     bool is_ok = true;
     for(int i = 0; i < exp->size(); i++){
@@ -171,7 +191,7 @@ void DicesManual::on_ComputeButton_clicked()
         return;
     }
     srand(seed);
-    if(exp_prob + eps > 1 && exp_prob - eps < 1){
+    if(exp_prob > 0){
         int N = ui->number_of_exp_lineE->text().toInt(&is_ok);
         if(is_ok){
             dr_wind = new DicesResWindow(this);
@@ -183,7 +203,7 @@ void DicesManual::on_ComputeButton_clicked()
         }
     }
     else{
-        QMessageBox::warning(this, "Probability experiment", "ERROR: Overall sum of possibilities of all events is not equal to 1, consider changing possibilities in your events");  
+        QMessageBox::warning(this, "Probability experiment", "ERROR: Overall sum of possibilities of all events must be greater than 0, consider changing possibilities in your events");
     }
      ui->listWidget->setCurrentRow(0);
 }
@@ -236,10 +256,6 @@ void DicesManual::on_possibSortButton_clicked()
 
 void DicesManual::on_saveSeedButton_clicked()
 {
-//    FILE* seed_file;
-//    seed_file = fopen("seed.bin", "rb");
-//    fseek(seed_file, 0, SEEK_END);
-//    fflush(seed_file);
       std::ofstream file("seed.bin", std::ios::binary|std::ios::app);
       bool is_ok = true;
       seed = ui->seed_lineE->text().toInt(&is_ok);
@@ -262,7 +278,6 @@ void DicesManual::on_loadSeedButton_clicked()
     int t;
     ui->load_listWidget->clear();
     while(file.read((char*)&t, sizeof(int))){
-      //  QMessageBox::information(this, "BALLS", QString::fromStdString(std::to_string(t)));
         seed_vec.push_back(t);
         ui->load_listWidget->addItem(QString::fromStdString(std::to_string(t)));
     }
@@ -287,6 +302,10 @@ void DicesManual::on_removeSeedButton_clicked()
 {
     if(ui->load_listWidget->count() == 0){
         QMessageBox::warning(this, "Remove seed", "ERROR: you have no seeds to remove");
+        return;
+    }
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "Remove Seed", "Are you sure you want to delete this seed?", QMessageBox::Yes | QMessageBox::No);
+    if(reply == QMessageBox::No){
         return;
     }
     std::vector<int> seed_vec;

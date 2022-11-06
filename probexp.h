@@ -20,6 +20,7 @@ public:
     void remove(unsigned int id);
     double get_M(int power = 1);
     double get_D();
+    double get_omega();
     REvent get_rand_event();
     void qsort(bool (*comp)(REvent*, REvent*)){
         qsort_rec(comp, &events[0], &events[events.size() - 1]);
